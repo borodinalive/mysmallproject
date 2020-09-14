@@ -1,0 +1,27 @@
+{
+  "name": "vue-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "server": "node server.js"
+  },
+  "author": "Alex Borodin",
+  "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/borodinalive/mysmallproject.git"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "vue": "^2.6.12",
+    "vue-server-renderer": "^2.6.12"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2"
+  }
+}

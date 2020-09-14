@@ -3,9 +3,12 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
-const renderer = require('vue-server-renderer').createRenderer()
+const renderer = require('vue-server-renderer').createRenderer({
+  template: require('fs').readFileSync('./src/templates/index.template.html', 'utf-8')
+})
 
 const app = express();
+const createApp = require('./src/index');
 const config = require('./config/webpack.config.js');
 const compiler = webpack(config);
 
@@ -16,28 +19,11 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 app.get('/', (req, res) => {
-  const app = new Vue({
-    data: {
-      url: req.url
-    },
-    template: `
-      <div>Вы открыли URL: {{ url }}</div>`
-  })
+  const context = { url: 'корень сайта' }
+  const app = createApp(context)
 
   renderer.renderToString(app, (err, html) => {
-    if (err) {
-      res.status(500).end('Внутренняя ошибка сервера')
-      return
-    }
-    res.end(`
-      <!DOCTYPE html>
-      <html lang="ru">
-        <head>
-        <meta charset="utf-8">
-        <title>Привет</title></head>
-        <body>${html}</body>
-      </html>
-    `)
+    res.send(html);
   })
 })
 

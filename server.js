@@ -1,6 +1,9 @@
+const Vue = require('vue')
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+
+const renderer = require('vue-server-renderer').createRenderer()
 
 const app = express();
 const config = require('./config/webpack.config.js');
@@ -13,7 +16,29 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 app.get('/', (req, res) => {
-  res.send(`<html><title>OK</title><body>OK</body></html>`)
+  const app = new Vue({
+    data: {
+      url: req.url
+    },
+    template: `
+      <div>Вы открыли URL: {{ url }}</div>`
+  })
+
+  renderer.renderToString(app, (err, html) => {
+    if (err) {
+      res.status(500).end('Внутренняя ошибка сервера')
+      return
+    }
+    res.end(`
+      <!DOCTYPE html>
+      <html lang="ru">
+        <head>
+        <meta charset="utf-8">
+        <title>Привет</title></head>
+        <body>${html}</body>
+      </html>
+    `)
+  })
 })
 
 // Serve the files on port 3000.

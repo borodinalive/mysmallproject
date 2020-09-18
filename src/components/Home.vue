@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-
+  <div class="Home__container">
+    home... sweet home!
   </div>
 </template>
 
 <script>
   export default {
 
-    name: 'App.vue',
+    name: 'Home',
 
     components: {},
 

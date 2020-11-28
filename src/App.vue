@@ -1,13 +1,12 @@
 <template>
-  <div class="App.vue__container">
-
+  <div class="app__container">
   </div>
 </template>
 
 <script>
   export default {
 
-    name: 'App.vue',
+    name: 'app',
 
     components: {},
 

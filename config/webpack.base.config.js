@@ -30,13 +30,13 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      "Vue": 'vue',
-      "Vuex": ['vuex/dist/vuex.esm.js', 'default'],
-      "mapState": ['vuex/dist/vuex.esm.js', 'mapState'],
-      "mapGetters": ['vuex/dist/vuex.esm.js', 'mapGetters'],
-      "mapMutations": ['vuex/dist/vuex.esm.js', 'mapMutations'],
-      "mapActions": ['vuex/dist/vuex.esm.js', 'mapActions'],
-      "_": ['@client/lib/lodash.js', 'default']
+      'Vue': 'vue',
+      'Vuex': ['vuex/dist/vuex.esm.js', 'default'],
+      'mapState': ['vuex/dist/vuex.esm.js', 'mapState'],
+      'mapGetters': ['vuex/dist/vuex.esm.js', 'mapGetters'],
+      'mapMutations': ['vuex/dist/vuex.esm.js', 'mapMutations'],
+      'mapActions': ['vuex/dist/vuex.esm.js', 'mapActions'],
+      '_': ['@client/lib/lodash.js', 'default'],
     }),
     new VueLoaderPlugin(),
     // new CopyWebpackPlugin([

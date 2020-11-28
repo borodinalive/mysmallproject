@@ -28,7 +28,7 @@ const styleLoader = [
   // },
 ];
 
-//Forward config into application
+// Forward config into application
 // webpackPlugins.push(
 //   new webpack.DefinePlugin({
 //     'appConf': JSON.stringify(appConf),
@@ -47,19 +47,19 @@ const styleLoader = [
 // }
 
 webpackPlugins.push(new VueSSRClientPlugin({
-  filename: 'client-manifest.json'
-}))
+  filename: 'client-manifest.json',
+}));
 
 module.exports = merge(BASE_CONFIG, {
   entry: {
-    "client/index": path.resolve(__dirname, '../src/client/index.js')
+    'client/index': path.resolve(__dirname, '../src/client/index.js'),
   },
   mode: 'development',
-  target: "web",
+  target: 'web',
   externals: webpackExternals,
   output: {
     filename: '[name].js',
-    chunkFilename: "[name].js?" + Date.now(),
+    chunkFilename: '[name].js?' + Date.now(),
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
   },
@@ -73,10 +73,10 @@ module.exports = merge(BASE_CONFIG, {
             hotReload: true,
             loaders: {
               js: 'babel-loader',
-              css: styleLoader
-            }
-          }
-        }
+              css: styleLoader,
+            },
+          },
+        },
       },
       // {
       //   test: /\.scss$/,
@@ -85,19 +85,19 @@ module.exports = merge(BASE_CONFIG, {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.(png|jpe?g|gif|ico)(\?.*)?$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 10000,
-          name: "img/[name].[hash:16].[ext]"
-        }
+          name: 'img/[name].[hash:16].[ext]',
+        },
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000"
+        loader: 'url-loader?limit=10000',
       },
       // {
       //   test: /\.svg$/,
@@ -107,7 +107,7 @@ module.exports = merge(BASE_CONFIG, {
       //     publicPath: '/'
       //   }
       // },
-    ]
+    ],
   },
-  plugins: webpackPlugins
+  plugins: webpackPlugins,
 });

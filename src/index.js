@@ -1,11 +1,11 @@
-const Vue = require('vue')
+const Vue = require('vue');
 
 module.exports = function createApp(context) {
   return new Vue({
     data: {
-      url: context.url
+      url: context.url,
     },
     template: `
-      <div>Вы открыли URL: {{ url }}</div>`
-  })
-}
+      <div>Вы открыли URL: {{ url }}</div>`,
+  });
+};

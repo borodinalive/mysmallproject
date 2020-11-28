@@ -4,7 +4,7 @@ const {merge} = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 
-const VueSSRServerPlugin = require("vue-server-renderer/server-plugin");
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
 
 const BASE_CONFIG = require('./webpack.base.config.js');
 
@@ -29,7 +29,7 @@ const styleLoader = [
   // },
 ];
 
-//Map node_modules support as webpack externals array for TARGET=node
+// Map node_modules support as webpack externals array for TARGET=node
 // let nodeModules = {};
 //
 // fs.readdirSync('node_modules')
@@ -51,10 +51,10 @@ module.exports = merge(BASE_CONFIG, {
           options: {
             hotReload: true, // todo
             loaders: {
-              js: 'babel-loader'
-            }
-          }
-        }
+              js: 'babel-loader',
+            },
+          },
+        },
       },
       // {
       //   test: /\.scss$/,
@@ -63,19 +63,19 @@ module.exports = merge(BASE_CONFIG, {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.(png|jpe?g|gif|ico)(\?.*)?$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 10000,
-          name: "img/[name].[hash:16].[ext]"
-        }
+          name: 'img/[name].[hash:16].[ext]',
+        },
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000"
+        loader: 'url-loader?limit=10000',
       },
       // {
       //   test: /\.svg$/,
@@ -84,24 +84,24 @@ module.exports = merge(BASE_CONFIG, {
       //     symbolId: filePath => path.basename(filePath)
       //   }
       // }
-    ]
+    ],
   },
-  target: "node",
+  target: 'node',
   externals: webpackExternals,
   entry: {
-    "server/index": './src/server/index.js'
+    'server/index': './src/server/index.js',
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'), // todo
     publicPath: '/', // todo
-    libraryTarget: "commonjs2"
+    libraryTarget: 'commonjs2',
   },
   plugins: [
     // new webpack.DefinePlugin({
     //   'appConf': JSON.stringify(appConf),
     //   "process.env.VUE_ENV": "'server'"
     // }),
-    new VueSSRServerPlugin()
-  ]
-})
+    new VueSSRServerPlugin(),
+  ],
+});

@@ -1,11 +1,11 @@
-const Vue = require('vue')
+const Vue = require('vue');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const renderer = require('vue-server-renderer').createRenderer({
-  template: require('fs').readFileSync('./src/templates/index.template.html', 'utf-8')
-})
+  template: require('fs').readFileSync('./src/templates/index.template.html', 'utf-8'),
+});
 
 const app = express();
 const createApp = require('./src/index');
@@ -19,15 +19,15 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 app.get('/', (req, res) => {
-  const context = { url: 'корень сайта' }
-  const app = createApp(context)
+  const context = {url: 'корень сайта'};
+  const app = createApp(context);
 
   renderer.renderToString(app, (err, html) => {
     res.send(html);
-  })
-})
+  });
+});
 
 // Serve the files on port 3000.
-app.listen(3000, function () {
+app.listen(3000, function() {
   console.log('Example app listening on port 3000!\n');
 });

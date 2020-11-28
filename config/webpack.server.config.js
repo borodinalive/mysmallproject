@@ -30,15 +30,15 @@ const styleLoader = [
 ];
 
 // Map node_modules support as webpack externals array for TARGET=node
-// let nodeModules = {};
-//
-// fs.readdirSync('node_modules')
-//   .filter(x => ['.bin'].indexOf(x) === -1)
-//   .forEach(m => {
-//     nodeModules[m] = 'commonjs ' + m
-//   });
-// nodeModules['fs'] = 'commonjs fs';
-// webpackExternals.push(nodeModules);
+const nodeModules = {};
+
+fs.readdirSync('node_modules')
+  .filter((x) => ['.bin'].indexOf(x) === -1)
+  .forEach((m) => {
+    nodeModules[m] = 'commonjs ' + m;
+  });
+nodeModules['fs'] = 'commonjs fs';
+webpackExternals.push(nodeModules);
 
 module.exports = merge(BASE_CONFIG, {
   mode: 'development',
@@ -52,6 +52,7 @@ module.exports = merge(BASE_CONFIG, {
             hotReload: true, // todo
             loaders: {
               js: 'babel-loader',
+              css: styleLoader,
             },
           },
         },

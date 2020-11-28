@@ -1,14 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const LRU = require('lru-cache');
-const fastify = require('fastify');
+const express = require('express');
 
 const vueRenderer = require('vue-server-renderer');
 
-
-const server = fastify({
-  logger: true,
-});
+const server = express();
 
 const templatePath = path.resolve(__dirname, 'html-templates/index.template.html');
 
@@ -19,8 +16,6 @@ const template = fs.readFileSync(templatePath, 'utf-8');
 const resolve = (file) => path.resolve(__dirname, file);
 
 const appConf = {}; // require('./env.conf.js');
-
-// server.register(require('fastify-cookie'));
 
 /* eslint-disable no-console */
 const clientManifest = require('../../dist/client-manifest.json');
@@ -46,7 +41,7 @@ if (appConf.ENV === 'production') {
     template,
   });
 } else {
-  readyPromise = await require(resolve('../../devserver'))(
+  readyPromise = require(resolve('../../devserver'))(
     server,
     templatePath,
     (bundle, options) => {
@@ -62,7 +57,7 @@ const handleError = (err, res, req) => {
   } else if (err.code === 404) {
     res.status(404).send('404 | Page Not Found');
   } else {
-    server.log.error('error during render', err.stack);
+    console.error('error during render', err.stack);
     res.status(500).send('500 | Internal Server Error');
   }
 };
@@ -88,24 +83,16 @@ function render(req, res) {
 // Forward all get requests to renderer
 server.get('*', (req, res) => {
   if (true /* appConf.ENV === 'development'*/) { // todo
-    readyPromise.then(() => render(req, res)).catch((err) => server.log.error(err));
+    readyPromise.then(() => render(req, res)).catch((err) => console.error(err));
   } else {
     render(req, res);
   }
 });
-
-// В dev режиме статику раздает нода
-if (true) { //isProd === false
-  server.register(require('fastify-static'), {
-    root: resolve('../../dist'),
-    prefix: '/dist',
-  });
-}
 
 server.listen(3000, (err, addr) => {
   if (err) {
     server.log.error(err);
     throw err;
   }
-  server.log.info(`SSR listening on ${addr}`);
+  console.log(`SSR listening on ${addr}`);
 });

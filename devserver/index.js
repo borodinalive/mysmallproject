@@ -15,9 +15,8 @@ const readFile = (fs, file) => {
 };
 
 
-module.exports = async function setupDevServer(app, templatePath, cb) {
+module.exports = function setupDevServer(app, templatePath, cb) {
   let bundle; let template; let clientManifest; let ready;
-  await app.register(require('fastify-express'));
 
   const readyPromise = new Promise((r) => {
     ready = r;

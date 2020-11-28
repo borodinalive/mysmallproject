@@ -1,0 +1,15 @@
+{
+  "publicPath": "/",
+  "all": [
+    "client/index.js"
+  ],
+  "initial": [
+    "client/index.js"
+  ],
+  "async": [],
+  "modules": {
+    "00766026": [
+      0
+    ]
+  }
+}

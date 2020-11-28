@@ -9,10 +9,10 @@ const renderer = require('vue-server-renderer').createRenderer({
 
 const app = express();
 const createApp = require('./src/index');
-const config = require('./config/webpack.config.js');
+const config = require('./config/webpack.base.config.js');
 const compiler = webpack(config);
 
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// Tell express to use the webpack-dev-middleware and use the webpack.base.config.js
 // configuration file as a base.
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,

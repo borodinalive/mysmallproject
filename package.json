@@ -5,21 +5,30 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "server": "node server.js"
+    "server": "node server.js",
+    "build-client": "webpack-cli --progress --colors --config ./config/webpack.client.config.js --verbose ",
+    "build-server": "webpack-cli --progress --colors --config ./config/webpack.server.config.js --verbose "
   },
   "author": "Alex Borodin",
   "license": "ISC",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/borodinalive/mysmallproject.git"
+    "type": "git",
+    "url": "https://github.com/borodinalive/mysmallproject.git"
   },
   "dependencies": {
     "express": "^4.17.1",
     "vue": "^2.6.12",
-    "vue-server-renderer": "^2.6.12"
+    "vue-loader": "^15.9.5",
+    "vue-server-renderer": "^2.6.12",
+    "webpack-merge": "^5.4.0"
   },
   "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
     "jest": "^26.4.2",
+    "postcss-loader": "^4.1.0",
+    "url-loader": "^4.1.1",
+    "vue-style-loader": "^4.1.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.2"

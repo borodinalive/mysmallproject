@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "server": "node server.js",
-    "build-client": "webpack-cli --progress --colors --config ./config/webpack.client.config.js --verbose ",
-    "build-server": "webpack-cli --progress --colors --config ./config/webpack.server.config.js --verbose "
+    "server": "node ./src/server",
+    "build-client": "webpack-cli --progress --colors --config ./config/webpack.client.config.js --verbose",
+    "build-server": "webpack-cli --progress --colors --config ./config/webpack.server.config.js --verbose",
+    "dev": "npm run build-client && npm run build-server && npm run server"
   },
   "author": "Alex Borodin",
   "license": "ISC",
@@ -17,24 +18,35 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "fastify": "^3.8.0",
+    "fastify-express": "^0.3.2",
+    "fastify-static": "^3.3.0",
+    "lru-cache": "^6.0.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.5",
     "vue-server-renderer": "^2.6.12",
+    "vue-template-compiler": "^2.6.12",
     "webpack-merge": "^5.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
+    "chokidar": "^3.4.3",
     "css-loader": "^5.0.1",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^26.4.2",
+    "memory-fs": "^0.5.0",
     "postcss-loader": "^4.1.0",
     "url-loader": "^4.1.1",
+    "vue-router": "^3.4.9",
     "vue-style-loader": "^4.1.2",
+    "vuex": "^3.6.0",
+    "vuex-router-sync": "^5.0.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-middleware": "^3.7.2"
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
   }
 }

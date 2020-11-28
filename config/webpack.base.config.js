@@ -8,6 +8,16 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
+  resolve: {
+    alias: {
+      '@server': path.resolve(__dirname, '../src/server'),
+      '@client': path.resolve(__dirname, '../src/client'),
+      '@components': path.resolve(__dirname, '../src/client/components'),
+      '@root': path.resolve(__dirname, '../src'),
+      '@store': path.resolve(__dirname, '../src/store'),
+      '@sass': path.resolve(__dirname, '../src/sass'),
+    },
+  },
   stats: {
     all: false,
     colors: true,
